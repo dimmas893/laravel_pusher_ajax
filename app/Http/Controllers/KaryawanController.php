@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Events\KaryawanCreated;
 use App\Models\Karyawan;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class KaryawanController extends Controller
@@ -17,20 +18,10 @@ class KaryawanController extends Controller
         }
         return view('karyawan.index')->with('success', 'Anda Ada Pesan Baru');
     }
-    
-    public function ajax(Request $request)
-    {
-        if ($request->expectsJson()) {
-            $data = Karyawan::all();
-            return response()->json([
-                'ajax' => $data->count()
-            ], 200);
-        }
-    }
 
     public function ajax_table()
     {
-        $emps = Karyawan::latest()->get();
+        $emps = User::latest()->get();
         // $csrf = @csrf;
         $output = '';
         $hitung = 0;
@@ -41,16 +32,16 @@ class KaryawanController extends Controller
              <thead>
               <tr>
                 <th>No</th>
-                <th>Nama </th>
-                <th>Nik</th>
+                <th>name </th>
+                <th>email</th>
               </tr>
             </thead>
             <tbody>';
             foreach ($emps as $emp) {
                 $output .= '<tr>
                 <td>' . $no++ . '</td>
-                <td>' . $emp->nama . '</td>
-                <td>' . $emp->nik . '</td>
+                <td>' . $emp->name . '</td>
+                <td>' . $emp->email . '</td>
               </tr>';
             }
             $output .= '</tbody></table>';
@@ -67,9 +58,10 @@ class KaryawanController extends Controller
     }
     public function store(Request $request)
     {
-        Karyawan::create([
-            'nama' => $request->nama,
-            'nik' => $request->nik
+        User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => bcrypt('password')
         ]);
         KaryawanCreated::dispatch();
         return back()->with('success', 'Data Berhasil Ditambah');

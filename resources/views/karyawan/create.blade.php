@@ -14,8 +14,6 @@
 </head>
 
 <body>
-    <h1>Hello, world! sangcahaya.id</h1>
-
     <div class="container">
         <div class="row">
             <div class="col-md-12">
@@ -23,13 +21,13 @@
                 <form method="POST" action="{{ url('karyawan/create') }}">
                     @csrf
                     <div class="form-group">
-                        <label for="nama">Nama</label>
-                        <input type="text" class="form-control" id="nama" aria-describedby="emailHelp"
-                            placeholder="Nama" name="nama">
+                        <label for="nama">name</label>
+                        <input type="text" class="form-control"aria-describedby="emailHelp" placeholder="name"
+                            name="name">
                     </div>
                     <div class="form-group">
-                        <label for="nik">NIK</label>
-                        <input type="text" class="form-control" id="nik" placeholder="NIK" name="nik">
+                        <label for="nik">email</label>
+                        <input type="email" class="form-control" placeholder="email" name="email">
                     </div>
                     <button type="submit" class="btn btn-primary">Submit</button>
                 </form>
@@ -50,33 +48,33 @@
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
     </script>
 
-<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-<script>
-  //sweetalert for success or error message
-  @if(session()->has('success'))
-      swal({
-          type: "success",
-          icon: "success",
-          title: "BERHASIL!",
-          text: "{{ session('success') }}",
-          timer: 1500,
-          showConfirmButton: false,
-          showCancelButton: false,
-          buttons: false,
-      });
-      @elseif(session()->has('error'))
-      swal({
-          type: "error",
-          icon: "error",
-          title: "GAGAL!",
-          text: "{{ session('error') }}",
-          timer: 1500,
-          showConfirmButton: false,
-          showCancelButton: false,
-          buttons: false,
-      });
-      @endif
-</script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script>
+        //sweetalert for success or error message
+        @if (session()->has('success'))
+            swal({
+                type: "success",
+                icon: "success",
+                title: "BERHASIL!",
+                text: "{{ session('success') }}",
+                timer: 1500,
+                showConfirmButton: false,
+                showCancelButton: false,
+                buttons: false,
+            });
+        @elseif (session()->has('error'))
+            swal({
+                type: "error",
+                icon: "error",
+                title: "GAGAL!",
+                text: "{{ session('error') }}",
+                timer: 1500,
+                showConfirmButton: false,
+                showCancelButton: false,
+                buttons: false,
+            });
+        @endif
+    </script>
 </body>
 
 </html>

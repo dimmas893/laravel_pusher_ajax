@@ -20,7 +20,6 @@ Route::get('/', function () {
 
 
 Route::get('/karyawan', [KaryawanController::class, 'index']);
-Route::get('/ajax', [KaryawanController::class, 'ajax']);
 Route::get('/ajax_table', [KaryawanController::class, 'ajax_table']);
 Route::get('/karyawan/create', [KaryawanController::class, 'create']);
 Route::post('/karyawan/create', [KaryawanController::class, 'store']);
